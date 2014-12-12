@@ -1,9 +1,25 @@
 // JavaScript Document
 document.addEventListener("deviceready",onDeviceReady,false);
 document.addEventListener("backbutton", backButton, false);
+var map;
 // Cordova is ready to be used!
 function onDeviceReady() {
-	console.log("onDeviceReady");
+
+
+
+ /*   var button = document.getElementById("button");
+    button.addEventListener("click", onBtnClicked, false);
+
+    map = plugin.google.maps.Map.getMap();
+	  
+	var div = document.getElementById("map_canvas");
+
+	map.setDiv(div);
+	*/
+}
+
+function onBtnClicked() {
+	map.showDialog();
 }
 
 function backButton() {
@@ -167,6 +183,48 @@ function cargarLista(){
 			alert("Error: " + error.message);
 		}
 	});
+}
+
+
+function registrarse() {
+	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
+	var Usuarios = Parse.Object.extend("Usuarios");
+	var usuarios = new Usuarios();
+	var usernamex = document.getElementById("username").value;
+	var passwordx = document.getElementById("password").value;
+	var emailx = document.getElementById("email").value;
+	var nombrex = document.getElementById("nombre").value;
+	var apellido1x = document.getElementById("apellido1").value;
+	var apellido2x = document.getElementById("apellido2").value;
+	
+	usuarios.save({username : usernamex,
+					password : passwordx,
+					email : emailx,
+					nombre : nombrex,
+					apellido1 : apellido1x,
+					apellido2 : apellido2x }, {
+	success: function(object) {
+		window.location.href = "#pageLogin";
+	},
+	error: function(model, error) {
+		$(".error").show();
+		}
+	});
+}
+
+function cargarMapa() {
+
+  // Define a div tag with id="map_canvas"
+  var mapDiv = document.getElementById("map_canvas");
+
+  // Initialize the map plugin
+  var map = plugin.google.maps.Map.getMap(mapDiv);
+
+  map.on(plugin.google.maps.event.MAP_READY, onMapInit);
+
+}
+
+function onMapInit(map) {
 }
 
 function nuevoPedido() {

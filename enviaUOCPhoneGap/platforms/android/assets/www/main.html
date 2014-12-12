@@ -26,7 +26,7 @@
 </head> 
 <body>
 
-<div data-role="page" id="page">
+<div data-role="page" id="pageLogin">
 	<div data-role="header">
 		<h1>EnviaUOC</h1>
 	</div>
@@ -41,7 +41,7 @@
       <p id="fail"></p>
       </p>
       <p><a href="javascript:validate();" data-role="button">Entrar</a></p>
-      <p><a href="#" data-role="button">Registrarse</a></p>
+      <p><a href="#pageRegistro" data-role="button">Registrarse</a></p>
     </div>
   </div>
 	<div data-role="footer">
@@ -67,10 +67,48 @@
   <div data-role="content">
     <p><a href="javascript:callGPS();" data-role="button">Usar GPS</a></p>
     <p id="localizacion"></p>
-    <p><a href="#" data-role="button">Usar Mapa</a></p>
+    <p><a href="#map_canvas" data-role="button" id="buttonMapa">Usar Mapa</a></p>
   </div>
   <div data-role="footer">
     <h4>Nuevo Pedido</h4>
+  </div>
+</div>
+<div data-role="page" id="pageRegistro">
+  <div data-role="header">
+    <h1>EnviaUOC</h1>
+  </div>
+  <div data-role="content">
+    <div data-role="fieldcontain">
+        <p>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username">
+        </p>
+        <p>
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password">
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email">
+        </p>
+        <p>
+          <label for="nombre">Nombre</label>
+          <input type="text" name="nombre" id="nombre">
+        </p>
+        <p>
+          <label for="apellido1">Primer apellido</label>
+          <input type="text" name="apellido1" id="apellido1">
+        </p>
+        <p>
+          <label for="apellido2">Segundo apellido</label>
+          <input type="text" name="apellido2" id="apellido2">
+        </p>
+      <p>&nbsp;</p>
+      <p><a href="javascript:registrarse();" data-role="button">Registrarse</a> </p>
+    </div>
+  </div>
+  <div data-role="footer">
+    <h4>Registro</h4>
   </div>
 </div>
 </body>

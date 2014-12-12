@@ -13,6 +13,7 @@ C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\re
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\res\drawable-port-xhdpi\screen.png \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\res\drawable-xhdpi\icon.png \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\res\values\strings.xml \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\res\values\version.xml \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\res\xml\config.xml \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\ant-build\res\drawable\icon.png \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\ant-build\res\drawable-hdpi\icon.png \
@@ -59,6 +60,8 @@ C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\as
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\js\main.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.camera \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.dialogs \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.google.maps \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.http.request \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.camera\www \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.camera\www\Camera.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.camera\www\CameraConstants.js \
@@ -68,4 +71,8 @@ C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\as
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.dialogs\www\android \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.dialogs\www\notification.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.dialogs\www\android\notification.js \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.google.maps\www \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.google.maps\www\googlemaps-cdv-plugin.js \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.http.request\www \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.http.request\www\http-request.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\ant-build\AndroidManifest.xml \
