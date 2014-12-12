@@ -2,78 +2,76 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>Aplic. Web de jQuery Mobile</title>
+<link href="jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+<link href="jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
 <meta name="format-detection" content="telephone=no" />
 <meta name="msapplication-tap-highlight" content="no" />
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<link rel="stylesheet" type="text/css" href="css/index.css" />
+<!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
 
-<link href="jquery-mobile/jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
-<link href="jquery-mobile/jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
-<script src="jquery-mobile/jquery-1.6.4.min.js" type="text/javascript"></script>
-<script src="jquery-mobile/jquery.mobile-1.0.min.js" type="text/javascript"></script>
-
-<title>Aplic. Web de jQuery Mobile</title>
-
-
-       
-
-</head> 
-<body> 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/angular.js"></script>
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/styles.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.2.min.js"></script>
+
+</head> 
+<body>
 
 <div data-role="page" id="page">
 	<div data-role="header">
-		<h1>Página uno</h1>
+		<h1>EnviaUOC</h1>
 	</div>
-	<div data-role="content">	
-		<ul data-role="listview">
-			<li><a href="#page2">Página dos</a></li>
-            <li><a href="#page3">Página tres</a></li>
-			<li><a href="#page4">Página cuatro</a></li>
-			<li><a href="#javascript:callCamera()" data-role="button">Camera</a></li>
-		</ul>		
-	</div>
+  <div data-role="content">
+    <div data-role="fieldcontain">
+      <p>
+        <label for="textinput">Email: </label>
+        <input type="email" name="textinput" id="emailInput" value=""  />
+      </p>
+      <p>Contraseña:
+        <input type="password" name="passwordInput" id="passInput" value=""  />
+      <p id="fail"></p>
+      </p>
+      <p><a href="javascript:validate();" data-role="button">Entrar</a></p>
+      <p><a href="#" data-role="button">Registrarse</a></p>
+    </div>
+  </div>
 	<div data-role="footer">
-		<h4>Pie de página</h4>
-	</div>
+	  <h4>Login</h4>
+  </div>
 </div>
-
-<div data-role="page" id="page2">
-	<div data-role="header">
-		<h1>Página dos</h1>
-	</div>
-	<div data-role="content">	
-		Contenido		
-	</div>
-	<div data-role="footer">
-		<h4>Pie de página</h4>
-	</div>
+<div data-role="page" id="paginaInicial">
+  <div data-role="header">
+    <h1>EnviaUOC</h1>
+  </div>
+  <div data-role="content">
+    <pre><ul data-role="listview" id="listPedidos"></ul><p>&nbsp;</p><p></p></pre>
+    <a href="#nuevoPedido" data-role="button">Nuevo Pedido</a> 
+  </div>
+  <div data-role="footer">
+    <h4>Josep Mª Viladegut</h4>
+  </div>
 </div>
-
-<div data-role="page" id="page3">
-	<div data-role="header">
-		<h1>Página tres</h1>
-	</div>
-	<div data-role="content">	
-		Contenido		
-	</div>
-	<div data-role="footer">
-		<h4>Pie de página</h4>
-	</div>
+<div data-role="page" id="nuevoPedido" data-add-back-btn="true">
+  <div data-role="header">
+    <h1>EnviaUOC</h1>
+  </div>
+  <div data-role="content">
+    <p><a href="javascript:callGPS();" data-role="button">Usar GPS</a></p>
+    <p id="localizacion"></p>
+    <p><a href="#" data-role="button">Usar Mapa</a></p>
+  </div>
+  <div data-role="footer">
+    <h4>Nuevo Pedido</h4>
+  </div>
 </div>
-
-<div data-role="page" id="page4">
-	<div data-role="header">
-		<h1>Página cuatro</h1>
-	</div>
-	<div data-role="content">	
-		Contenido		
-	</div>
-	<div data-role="footer">
-		<h4>Pie de página</h4>
-	</div>
-</div>
-
 </body>
 </html>
