@@ -20,6 +20,7 @@
 
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/styles.css">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzpKpkTIdb8deE8GGVlrQkdVM3P5S_pTM&sensor=true"> </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>       
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.2.min.js"></script>
@@ -32,7 +33,6 @@
     <h1>EnviaUOC</h1>
   </div>
   <div data-role="content">
-  	<div data-role="fieldcontain">
   		<p>
         <label>Email: </label>
   		<input type="email" ng-model="email">
@@ -42,7 +42,6 @@
 		<input type="password" ng-model="password">
   		</p>
         <p style="color:red" id="fail"></p>
-    </div>
         <p><a href ng-click="validar()" data-role="button" data-theme="b" >Entrar</a></p>
         <p><a href="#pageRegistro" data-role="button" >Registrarse</a></p>
   </div>
@@ -89,9 +88,8 @@
         <input type="text" id="ciudad" ng-model="ciudad" />
 	</p>
     <p><a href data-role="button" ng-click="gps()">Obtener ubicación GPS</a></p>
-    <p><a href data-role="button" id="buttonMap" ng-click="map()">Marcar posición en el mapa</a></p>
+    <p><a href="#pageMap" data-role="button">Marcar posición en el mapa</a></p>
     <p><a href data-role="button" data-theme="b" ng-click="savePedido()">Aceptar</a></p>
-    
   </div>
   <div data-role="footer">
     <h4>Nuevo Pedido</h4>
@@ -103,7 +101,6 @@
     <h1>EnviaUOC</h1>
   </div>
   <div data-role="content">
-    <div data-role="fieldcontain">
         <p>
           <label for="username">Username</label>
           <input type="text"  ng-model="usernameR">
@@ -129,7 +126,6 @@
           <input type="text"  ng-model="apellido2R">
         </p>
         <p style="color:red" id="error"></p>
-      </div>
       <p><a href data-role="button" ng-click="registrarse()">Registrarse</a></p>
     
   </div>
@@ -139,6 +135,17 @@
 </div>
 
 
+
+
+</div>
+<div data-role="page" id="pageMap" ng-controller="ControladorMapa" data-add-back-btn="true">
+  <div data-role="header">
+    <h1>EnviaUOC</h1>
+  </div>
+  <div style="width:90%;height:400px" data-role="content" id="map"></div>
+  <div data-role="footer">
+    <h4>Mapa</h4>
+  </div>
 </div>
 </body>
 </html>
