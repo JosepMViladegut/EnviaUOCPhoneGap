@@ -1,22 +1,10 @@
 // JavaScript Document
 document.addEventListener("deviceready",onDeviceReady,false);
 document.addEventListener("backbutton", backButton, false);
-
 var map;
 // Cordova is ready to be used!
 function onDeviceReady() {
-
-
-
- /*   var button = document.getElementById("button");
-    button.addEventListener("click", onBtnClicked, false);
-
-    map = plugin.google.maps.Map.getMap();
-	  
-	var div = document.getElementById("map_canvas");
-
-	map.setDiv(div);
-	*/
+	map = plugin.google.maps.Map.getMap();
 }
 
 function onBtnClicked() {
@@ -25,22 +13,6 @@ function onBtnClicked() {
 
 function backButton() {
 	navigator.app.exitApp();
-}
-
-// Call camera
-function callCamera() {
-console.log("callCamera");
-navigator.camera.getPicture(onPhotoSuccess, onFail);
-}
-
-// Call Vibration
-function callVibration(){
-console.log("callVibration");
-navigator.notifcation.vibrate(2000);
-}
-// Called when a photo is successfully retrieved
-function onPhotoSuccess(imageData) {
-console.log("Photo done");
 }
 
 // Callback Alert dismissed
@@ -77,63 +49,6 @@ function saveParse() {
 	    $(".error").show();
 	  }
 	});
-}
-
-function validate() {
-	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
-	var email = document.getElementById("emailInput").value;
-	var contra = document.getElementById("passInput").value;
-	
-	var Usuarios = Parse.Object.extend("Usuarios");
-	var query = new Parse.Query(Usuarios);
-	query.equalTo("email", email);
-	query.find({
-		success: function(results){
-			if (results.length == 1) {
-				var usuarioR = results[0];
-				var parsePassword = usuarioR.get('password');
-				if (contra == parsePassword) {
-					usuarioSession.nombre = usuarioR.get("nombre");
-					usuarioSession.apellido1 = usuarioR.get("apellido1");
-					usuarioSession.apellido2 = usuarioR.get("apellido2");
-					usuarioSession.email = usuarioR.get("email");
-					usuarioSession.username = usuarioR.get("username");
-					
-					localStorage.setItem("usuario", JSON.stringify(usuarioSession));
-					
-					cargarLista();
-					window.location.href = "#paginaInicial";
-				}
-				else {
-					document.getElementById("fail").innerHTML = "Password incorrecto";
-				}
-			}
-			else {
-				document.getElementById("fail").innerHTML = "Usuario no existente";
-			}
-		},
-		error: function(error) {
-			alert("Error: " + error.message);
-		}
-	});
-	
-}
-
-
-
-
-function cargarMapa() {
-  // Define a div tag with id="map_canvas"
-  var mapDiv = document.getElementById("map_canvas");
-
-  // Initialize the map plugin
-  var map = plugin.google.maps.Map.getMap(mapDiv);
-
-  map.on(plugin.google.maps.event.MAP_READY, onMapInit);
-
-}
-
-function onMapInit(map) {
 }
 
 function nuevoPedido() {
@@ -324,6 +239,11 @@ function ControladorNuevoPedido($scope){
 		navigator.geolocation.getCurrentPosition(onGPSSuccess, onFail);	
 	}
 	
+	$scope.map = function() {
+		map.showDialog();	
+	}
+	
+	
 	$scope.savePedido = function() {
 		var direccion = document.getElementById("direccion").value;
 		var localidad = document.getElementById("localidad").value;
@@ -442,4 +362,12 @@ function clearValues() {
 		tabla.deleteRow(0);	
 	}
 	createTable();	
+}
+
+
+
+function ControladorMapa(){
+
+  //map.on(plugin.google.maps.event.MAP_READY, onMapInit);
+
 }

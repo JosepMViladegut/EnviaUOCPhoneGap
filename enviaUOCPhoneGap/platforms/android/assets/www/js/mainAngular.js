@@ -2,21 +2,9 @@
 document.addEventListener("deviceready",onDeviceReady,false);
 document.addEventListener("backbutton", backButton, false);
 var map;
-var row;
 // Cordova is ready to be used!
 function onDeviceReady() {
-
-
-
- /*   var button = document.getElementById("button");
-    button.addEventListener("click", onBtnClicked, false);
-
-    map = plugin.google.maps.Map.getMap();
-	  
-	var div = document.getElementById("map_canvas");
-
-	map.setDiv(div);
-	*/
+	map = plugin.google.maps.Map.getMap();
 }
 
 function onBtnClicked() {
@@ -25,22 +13,6 @@ function onBtnClicked() {
 
 function backButton() {
 	navigator.app.exitApp();
-}
-
-// Call camera
-function callCamera() {
-console.log("callCamera");
-navigator.camera.getPicture(onPhotoSuccess, onFail);
-}
-
-// Call Vibration
-function callVibration(){
-console.log("callVibration");
-navigator.notifcation.vibrate(2000);
-}
-// Called when a photo is successfully retrieved
-function onPhotoSuccess(imageData) {
-console.log("Photo done");
 }
 
 // Callback Alert dismissed
@@ -54,7 +26,6 @@ function onFail(message) {
 
 
 
-
 var usuarioSession = new Object();
 usuarioSession.nombre = '';
 usuarioSession.apellido1 = '';
@@ -65,17 +36,7 @@ usuarioSession.username = '';
 
 var allPedidos = [];
 
-/*var usuario = {
-	username: '',
-	nombre: '',
-	apellido1: '',
-	apellido2: '',
-	email: '',
-	fullName : function(){
-		return this.apellido2 + " " + this.apellido1 + ", " + this.nombre;
-	}
-};
-*/
+
 function saveParse() {
 	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
 	var TestObject = Parse.Object.extend("TestObject");
@@ -88,65 +49,6 @@ function saveParse() {
 	    $(".error").show();
 	  }
 	});
-}
-
-function validate() {
-	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
-	var email = document.getElementById("emailInput").value;
-	var contra = document.getElementById("passInput").value;
-	
-	var Usuarios = Parse.Object.extend("Usuarios");
-	var query = new Parse.Query(Usuarios);
-	query.equalTo("email", email);
-	query.find({
-		success: function(results){
-			if (results.length == 1) {
-				var usuarioR = results[0];
-				var parsePassword = usuarioR.get('password');
-				if (contra == parsePassword) {
-					usuarioSession.nombre = usuarioR.get("nombre");
-					usuarioSession.apellido1 = usuarioR.get("apellido1");
-					usuarioSession.apellido2 = usuarioR.get("apellido2");
-					usuarioSession.email = usuarioR.get("email");
-					usuarioSession.username = usuarioR.get("username");
-					
-					localStorage.setItem("usuario", JSON.stringify(usuarioSession));
-					
-					cargarLista();
-					window.location.href = "#paginaInicial";
-				}
-				else {
-					document.getElementById("fail").innerHTML = "Password incorrecto";
-				}
-			}
-			else {
-				document.getElementById("fail").innerHTML = "Usuario no existente";
-			}
-		},
-		error: function(error) {
-			alert("Error: " + error.message);
-		}
-	});
-	
-}
-
-
-
-
-
-function cargarMapa() {
-
-  // Define a div tag with id="map_canvas"
-  var mapDiv = document.getElementById("map_canvas");
-
-  // Initialize the map plugin
-  var map = plugin.google.maps.Map.getMap(mapDiv);
-
-  map.on(plugin.google.maps.event.MAP_READY, onMapInit);
-
-}
-
-function onMapInit(map) {
 }
 
 function nuevoPedido() {
@@ -181,9 +83,7 @@ function nuevoPedido() {
 	  error: function(model, error) {
 	    $(".error").show();
 	  }
-	});
-	
-	
+	});	
 }
 
 function ControladorLogin($scope){ 
@@ -213,7 +113,6 @@ function ControladorLogin($scope){
 						window.location.href = "#paginaInicial";
 					}
 					else {
-
 						document.getElementById("fail").innerHTML = "Contraseña incorrecto";
 					}
 				}
@@ -226,8 +125,8 @@ function ControladorLogin($scope){
 			}
 		});
 	}
-	
 }
+
 
 
 function ControladorRegistro($scope) {
@@ -261,8 +160,9 @@ function ControladorRegistro($scope) {
 			});
 		}
 	}
-	
 }
+
+
 
 function cargarLista() {	
 	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
@@ -289,44 +189,6 @@ function cargarLista() {
 				pedido.estado = pedidoAux.get('estado');
 
 				allPedidos.push(pedido);
-				
-/*				var pedidoFila = tabla.insertRow(i);
-				
-				var info = pedidoAux.get('direccion');
-				var infociudad = pedidoAux.get('localidad');
-				
-				var h3 = document.createElement('h3');
-				h3.innerHTML = info;
-				
-				var par = document.createElement('p');
-				par.innerHTML = infociudad;
-				
-				var pedidoNuevo = pedidoFila.insertCell(0);
-				pedidoNuevo.appendChild(h3);
-				pedidoNuevo.appendChild(par);
-				
-				
-                var button = pedidoFila.insertCell(1);
-                var elementButton = document.createElement("input");
-                elementButton.type = "button";	
-                elementButton.setAttribute("onclick","viewSelectedRow(document.getElementById('text'+this.id))");
-				elementButton.value = "Consultar";
-                button.appendChild(elementButton);
-*/                
-/*				var info = pedidoAux.get('direccion');
-				var infociudad = pedidoAux.get('ciudad');
-				var li = document.createElement('li');
-
-				var h = document.createElement('h3');
-				h.innerHTML = info + "<p>" + infociudad + "</p>";
-
-				var ref = document.createElement('a');
-				ref.setAttribute("href", "#");
-
-				ref.appendChild(h);
-				li.appendChild(ref);
-				ul.appendChild(li);
-*/
 				}
 				createTable();
 		},
@@ -377,6 +239,11 @@ function ControladorNuevoPedido($scope){
 		navigator.geolocation.getCurrentPosition(onGPSSuccess, onFail);	
 	}
 	
+	$scope.map = function() {
+		map.showDialog();	
+	}
+	
+	
 	$scope.savePedido = function() {
 		var direccion = document.getElementById("direccion").value;
 		var localidad = document.getElementById("localidad").value;
@@ -424,10 +291,10 @@ function ControladorNuevoPedido($scope){
 				alert(error.message);
 			}
 		});	
-		
-		
 	}
 }
+
+
 
 function anadirPedidoTabla(){
 	var tabla = document.getElementById("tablaPedidos");
@@ -436,11 +303,7 @@ function anadirPedidoTabla(){
 // Called after GPS Alert
 function onGPSSuccess(position) {
 	var geocoder =  new google.maps.Geocoder();
-	
-/*	var positionStr='Latitude: ' + position.coords.latitude + '\n' +
-	'Longitude: ' + position.coords.longitude + '\n' +
-	'Accuracy: ' + position.coords.accuracy + '\n';
-*/
+
 	var lat = parseFloat(position.coords.latitude);
 	var lng = parseFloat(position.coords.longitude);
 	var latlng = new google.maps.LatLng(lat, lng);
@@ -474,13 +337,8 @@ function onGPSSuccess(position) {
 					if(num != null && calle != null){
 						document.getElementById("direccion").value = calle + ", " +num;
 					}
-				//if (address_component.types[0] == "locality") {
-				//	alert(address_component.long_name);
-
-//					return false; // break
-	//			}
 			});
-			clearValues
+			clearValues();
 		} else {
 			alert("No results found");
 		}
@@ -503,11 +361,13 @@ function clearValues() {
 	while(tabla.rows.length > 0){
 		tabla.deleteRow(0);	
 	}
-	cargarLista();	
+	createTable();	
 }
 
 
 
+function ControladorMapa(){
 
+  //map.on(plugin.google.maps.event.MAP_READY, onMapInit);
 
-
+}

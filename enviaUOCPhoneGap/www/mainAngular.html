@@ -20,47 +20,13 @@
 
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/styles.css">
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>            
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>       
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.2.min.js"></script>
 
 </head> 
 <body>
-
- <!--
-<div ng-controller="ControladorLogin" data-role="page" id="pageLogin">
-  <div data-role="header">
-    <h1>Encabezado</h1>
-  </div>
-  <div data-role="content">
-  		<input ng-model="nombre">
-		<input ng-model="apellido1">
-		<input ng-model="apellido2">
   
-  		<p><span>{{nombre}} {{apellido1}} {{apellido2}}</span></p>
-   <div data-role="fieldcontain">
-
-      <p>
-        <label for="textinput">Email: </label>
-        <input type="email" name="textinput" id="emailInput" value="" ng-model="emailInput" />
-      </p>
-      <p>Contraseña:
-        <input type="password" name="passwordInput" id="passInput" value="" ng-model="passInput" />
-      <p id="fail"></p>
-      </p>
-      <button ng-click="validate()">Botón</button>
-      <p><a ng-href="javascript:validate();" data-role="button">EntrarLink</a></p>
-      <p><a href="javascript:validate();" data-role="button">Entrar</a></p>
-      <p><a href="#pageRegistro" data-role="button">Registrarse</a></p>
-    </div>
-  
-  </div>
-	<div data-role="footer">
-	  <h4>Login</h4>
-  </div>
-</div>
-  -->
-
 <div ng-controller="ControladorLogin" data-role="page" id="pageLogin">
   <div data-role="header">
     <h1>EnviaUOC</h1>
@@ -97,7 +63,7 @@
     <a href="#pageNuevoPedido" data-role="button">Nuevo Pedido</a> 
   </div>
   <div data-role="footer">
-    <h4>Josep M&ordf; Viladegut</h4>
+    <h4>Josep M Viladegut</h4>
   </div>
 </div>
 
@@ -107,7 +73,7 @@
   </div>
   <div data-role="content">
     <p>
-        <label for="textinput">Direcci&oacute;n destino:</label>
+        <label for="textinput">Dirección destino:</label>
         <input type="text" id="direccion" ng-model="direccion" />
     </p>
     <p>
@@ -115,16 +81,16 @@
         <input type="text" id="localidad" ng-model="localidad" />
 	</p>
     <p>
-        <label for="textinput3">C&oacute;digo Postal:</label>
+        <label for="textinput3">Código Postal:</label>
         <input type="text" id="cp" ng-model="cp" />
 	</p>
     <p>
         <label for="textinput4">Ciudad:</label>
         <input type="text" id="ciudad" ng-model="ciudad" />
 	</p>
-    <p><a href data-role="button" ng-click="gps()">Obtener ubicaci&oacute;n GPS</a></p>
-    <p><a href data-role="button" ng-click="callMap()">Marcar posici&oacute;n en el mapa</a></p>
-	<p><a href data-role="button" data-theme="b" ng-click="savePedido()">Aceptar</a></p>
+    <p><a href data-role="button" ng-click="gps()">Obtener ubicación GPS</a></p>
+    <p><a href data-role="button" id="buttonMap" ng-click="map()">Marcar posición en el mapa</a></p>
+    <p><a href data-role="button" data-theme="b" ng-click="savePedido()">Aceptar</a></p>
     
   </div>
   <div data-role="footer">
@@ -172,5 +138,7 @@
   </div>
 </div>
 
+
+</div>
 </body>
 </html>
