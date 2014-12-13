@@ -2,10 +2,6 @@ document.addEventListener("deviceready",onDeviceReady,false);
 document.addEventListener("backbutton", backButton, false);
 
 function onDeviceReady() {
-	
-	
-	
-	//map = plugin.google.maps.Map.getMap();
 }
 
 function onBtnClicked() {
@@ -240,10 +236,11 @@ function ControladorNuevoPedido($scope){
 		navigator.geolocation.getCurrentPosition(onGPSSuccess, onFail);	
 	}
 	
-/*	$scope.map = function() {
+	$scope.map = function() {
 		navigator.geolocation.getCurrentPosition(openMap, onFail);	
+		window.location.href = "#pageMap";
 	}
-	*/
+	
 	
 	$scope.savePedido = function() {
 		var direccion = document.getElementById("direccion").value;
@@ -295,19 +292,6 @@ function ControladorNuevoPedido($scope){
 	}
 }
 
-function openMap(position){
-	var lat = parseFloat(position.coords.latitude);
-	var lng = parseFloat(position.coords.longitude);
-	var latlng = new google.maps.LatLng(lat, lng);
-	
-	var mapOptions = {
-		center: latlng,
-		zoom: 13,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	}
-	
-	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-}
 
 // Called after GPS Alert
 function onGPSSuccess(position) {
@@ -376,8 +360,43 @@ function clearValues() {
 
 
 function ControladorMapa(){
-	navigator.geolocation.getCurrentPosition(openMap, onFail);	
+	navigator.geolocation.getCurrentPosition(function(position){
+		var lat = parseFloat(position.coords.latitude);
+		var lng = parseFloat(position.coords.longitude);
+		var latlng = new google.maps.LatLng(lat, lng);
+	
+		var mapOptions = {
+			center: latlng,
+			zoom: 13,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		
+		var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+		
+		setTimeout(function() {
+			google.maps.event.trigger(map, 'resize');
+		},  100);		
+	}, onFail);	
 
   //map.on(plugin.google.maps.event.MAP_READY, onMapInit);
+}
+
+
+function openMap(position){
+	var lat = parseFloat(position.coords.latitude);
+	var lng = parseFloat(position.coords.longitude);
+	var latlng = new google.maps.LatLng(lat, lng);
+
+	var mapOptions = {
+		center: latlng,
+		zoom: 13,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	
+	var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+
+	setTimeout(function() {
+		google.maps.event.trigger(map, 'resize');
+	},  100);
 
 }

@@ -1,0 +1,7 @@
+#mapa {
+    margin: 0;
+    padding: 0;
+    height: 450px;
+	width: 100%;
+    border: 1px solid #ccc;
+}

@@ -45,6 +45,7 @@ C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\as
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\mainAngular.html \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\css\index.css \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\css\main.css \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\img\logo.png \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery-mobile\images \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery-mobile\jquery-1.6.4.min.js \

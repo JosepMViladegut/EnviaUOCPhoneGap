@@ -12,7 +12,7 @@
 <meta name="msapplication-tap-highlight" content="no" />
 <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-<!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+<link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/mainAngular.js"></script>
@@ -88,7 +88,7 @@
         <input type="text" id="ciudad" ng-model="ciudad" />
 	</p>
     <p><a href data-role="button" ng-click="gps()">Obtener ubicación GPS</a></p>
-    <p><a href="#pageMap" data-role="button">Marcar posición en el mapa</a></p>
+    <p><a href data-role="button" ng-click="map()">Marcar posición en el mapa</a></p>
     <p><a href data-role="button" data-theme="b" ng-click="savePedido()">Aceptar</a></p>
   </div>
   <div data-role="footer">
@@ -142,7 +142,7 @@
   <div data-role="header">
     <h1>EnviaUOC</h1>
   </div>
-  <div style="width:90%;height:400px" data-role="content" id="map"></div>
+  <div data-role="content" id="mapa"></div>
   <div data-role="footer">
     <h4>Mapa</h4>
   </div>
