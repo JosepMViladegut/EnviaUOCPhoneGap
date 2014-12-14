@@ -241,7 +241,7 @@ function mostrar(index){
 			});
 			
 			var infowindow = new google.maps.InfoWindow({
-				content: "Destino: " + pedidoM.direccion + "Estado: " +pedidoM.estado
+				content: "Destino: " + pedidoM.direccion + " Estado: " +pedidoM.estado
 			});
 			
 			google.maps.event.addListener(marker, 'click', function() {
