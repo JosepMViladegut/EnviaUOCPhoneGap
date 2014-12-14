@@ -215,14 +215,24 @@ function createTable(){
 		pedidoNuevo.appendChild(par);
 		
 		var button = pedidoFila.insertCell(1);
-		var elementButton = document.createElement("input");
-		elementButton.type = "button";	
-		elementButton.setAttribute("onclick","viewSelectedRow(document.getElementById('text'+this.id))");
-		elementButton.value = "Consultar";
+		var elementButton = document.createElement("button");
+		//elementButton.type = "button";	
+		elementButton.setAttribute("onClick","mostrar(this)");
+		elementButton.value = i;
+		elementButton.innerHTML = "Consultar";
 		button.appendChild(elementButton);
 	
 	});
 }
+
+function mostrar(index){
+
+		var pedidoM = allPedidos[index.value];
+		
+		alert(pedidoM.ciudad);
+		
+}
+
 
 
 
@@ -289,6 +299,7 @@ function ControladorNuevoPedido($scope){
 				alert(error.message);
 			}
 		});	
+		clearValues();
 	}
 }
 
@@ -331,7 +342,6 @@ function onGPSSuccess(position) {
 						document.getElementById("direccion").value = calle + ", " +num;
 					}
 			});
-			clearValues();
 		} else {
 			alert("No results found");
 		}
