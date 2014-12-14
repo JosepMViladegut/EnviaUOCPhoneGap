@@ -4,17 +4,10 @@ var map;
 function onDeviceReady() {
 }
 
-function onBtnClicked() {
-	map.showDialog();
-}
-
 function backButton() {
 	navigator.app.exitApp();
 }
 
-// Callback Alert dismissed
-function alertDismissed() {
-}
 // Callback Error found
 function onFail(message) {
 	document.getElementById("locate").innerHTML = "error";
@@ -29,7 +22,6 @@ usuarioSession.apellido1 = '';
 usuarioSession.apellido2 = '';
 usuarioSession.email = '';
 usuarioSession.username = '';
-
 
 var allPedidos = [];
 
@@ -125,7 +117,6 @@ function ControladorLogin($scope){
 }
 
 
-
 function ControladorRegistro($scope) {
 	$scope.registrarse = function() {
 		Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
@@ -160,7 +151,6 @@ function ControladorRegistro($scope) {
 }
 
 
-
 function cargarLista() {	
 	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
 	var objRetrieved = localStorage.getItem("usuario");
@@ -186,8 +176,8 @@ function cargarLista() {
 				pedido.estado = pedidoAux.get('estado');
 
 				allPedidos.push(pedido);
-				}
-				createTable();
+			}
+			createTable();
 		},
 		error: function(error) {
 			alert("Error: " + error.message);
@@ -221,14 +211,12 @@ function createTable(){
 		elementButton.value = i;
 		elementButton.innerHTML = "Consultar";
 		button.appendChild(elementButton);
-	
 	});
 }
 
+
 function mostrar(index){
-
 	var pedidoM = allPedidos[index.value];
-
 	var address = pedidoM.cireccion +"," +  pedidoM.localidad + "," + pedidoM.ciudad + "," + pedidoM.CP;
 	
 	var geocoder = new google.maps.Geocoder();
@@ -241,21 +229,28 @@ function mostrar(index){
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}
 			map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+			
+			setTimeout(function() {
+			google.maps.event.trigger(map, 'resize');
+			},  100);
+			
 			map.setCenter(results[0].geometry.location);
 			var marker = new google.maps.Marker({
 				map : map,
 				position: results[0].geometry.location
 			});
-
-			setTimeout(function() {
-			google.maps.event.trigger(map, 'resize');
-			},  100);
 			
+			var infowindow = new google.maps.InfoWindow({
+				content: "Destino: " + pedidoM.direccion + " Estado: " +pedidoM.estado
+			});
+			
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map, marker);
+			});
 		}
 		window.location.href = "#pageMap";
 	});
 }
-
 
 function ControladorNuevoPedido($scope){
 	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
@@ -385,3 +380,8 @@ function clearValues() {
 	}
 	createTable();	
 }
+
+function ControladorPagInicial(){}
+
+
+function ControladorMapa(){}
