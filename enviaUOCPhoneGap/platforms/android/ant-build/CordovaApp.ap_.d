@@ -41,12 +41,11 @@ C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\as
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery.mobile.structure-1.0.min.css \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery.mobile.theme-1.0.min.css \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\js \
-C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\main.html \
-C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\mainAngular.html \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\css\index.css \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\css\main.css \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\img\logo.png \
+C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\img\logoCordova.png \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery-mobile\images \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery-mobile\jquery-1.6.4.min.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\jquery-mobile\jquery.mobile-1.0.min.js \
@@ -60,7 +59,6 @@ C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\as
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\js\angular.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\js\index.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\js\main.js \
-C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\js\mainAngular.js \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.camera \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\org.apache.cordova.dialogs \
 C:\Users\Joma\Desktop\EnviaUOCPhoneGap\git\enviaUOCPhoneGap\platforms\android\assets\www\plugins\plugin.google.maps \

@@ -1,70 +1,18 @@
-// JavaScript Document
 document.addEventListener("deviceready",onDeviceReady,false);
 document.addEventListener("backbutton", backButton, false);
 var map;
-// Cordova is ready to be used!
 function onDeviceReady() {
-
-
-
- /*   var button = document.getElementById("button");
-    button.addEventListener("click", onBtnClicked, false);
-
-    map = plugin.google.maps.Map.getMap();
-	  
-	var div = document.getElementById("map_canvas");
-
-	map.setDiv(div);
-	*/
-}
-
-function onBtnClicked() {
-	map.showDialog();
 }
 
 function backButton() {
 	navigator.app.exitApp();
 }
 
-// Call camera
-function callCamera() {
-console.log("callCamera");
-navigator.camera.getPicture(onPhotoSuccess, onFail);
-}
-// Call GPS
-function callGPS(){
-	console.log("callGPS");
-	navigator.geolocation.getCurrentPosition(onGPSSuccess, onFail);
-}
-// Call Vibration
-function callVibration(){
-console.log("callVibration");
-navigator.notifcation.vibrate(2000);
-}
-// Called when a photo is successfully retrieved
-function onPhotoSuccess(imageData) {
-console.log("Photo done");
-}
-// Called after GPS Alert
-function onGPSSuccess(position) {
-	console.log("onGPSSuccess");
-	var positionStr='Latitude: ' + position.coords.latitude + '\n' +
-	'Longitude: ' + position.coords.longitude + '\n' +
-	'Altitude: ' + position.coords.altitude + '\n' +
-	'Accuracy: ' + position.coords.accuracy + '\n';
-	document.getElementById("localizacion").innerHTML = positionStr;
-	//navigator.notifcation.alert(positionStr,alertDismissed,'Posición','Ok');
-};
-// Callback Alert dismissed
-function alertDismissed() {
-}
 // Callback Error found
 function onFail(message) {
 	document.getElementById("locate").innerHTML = "error";
 	alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 }
-
-
 
 
 
@@ -75,17 +23,9 @@ usuarioSession.apellido2 = '';
 usuarioSession.email = '';
 usuarioSession.username = '';
 
-/*var usuario = {
-	username: '',
-	nombre: '',
-	apellido1: '',
-	apellido2: '',
-	email: '',
-	fullName : function(){
-		return this.apellido2 + " " + this.apellido1 + ", " + this.nombre;
-	}
-};
-*/
+var allPedidos = [];
+
+
 function saveParse() {
 	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
 	var TestObject = Parse.Object.extend("TestObject");
@@ -98,133 +38,6 @@ function saveParse() {
 	    $(".error").show();
 	  }
 	});
-}
-
-function validate() {
-	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
-	var email = document.getElementById("emailInput").value;
-	var contra = document.getElementById("passInput").value;
-	
-	var Usuarios = Parse.Object.extend("Usuarios");
-	var query = new Parse.Query(Usuarios);
-	query.equalTo("email", email);
-	query.find({
-		success: function(results){
-			if (results.length == 1) {
-				var usuarioR = results[0];
-				var parsePassword = usuarioR.get('password');
-				if (contra == parsePassword) {
-					usuarioSession.nombre = usuarioR.get("nombre");
-					usuarioSession.apellido1 = usuarioR.get("apellido1");
-					usuarioSession.apellido2 = usuarioR.get("apellido2");
-					usuarioSession.email = usuarioR.get("email");
-					usuarioSession.username = usuarioR.get("username");
-					
-					localStorage.setItem("usuario", JSON.stringify(usuarioSession));
-					
-					cargarLista();
-					window.location.href = "#paginaInicial";
-				}
-				else {
-					document.getElementById("fail").innerHTML = "Password incorrecto";
-				}
-			}
-			else {
-				document.getElementById("fail").innerHTML = "Usuario no existente";
-			}
-		},
-		error: function(error) {
-			alert("Error: " + error.message);
-		}
-	});
-	
-}
-
-function cargarLista(){
-	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
-	history.go(-(history.length - 1));
-	var objRetrieved = localStorage.getItem("usuario");
-	var usuarioSession = JSON.parse(objRetrieved);
-
-	var ul = document.getElementById("listPedidos");
-	var PedidosPrueba = Parse.Object.extend("PedidosPrueba");
-	var query = new Parse.Query(PedidosPrueba);
-	query.equalTo("usuario", usuarioSession.username);
-	//query.equalTo("usuario", "joma");
-	query.find({
-		success: function(results){
-			for (var i = 0; i<results.length; i++){
-				var pedidoAux = results[i];
-				//ul.innerHTML = "<li><a href=\"#\"><h3>"+pedidoAux.get('direccion')+"</h3></a></li>";
-				
-				var info = pedidoAux.get('direccion');
-				var infociudad = pedidoAux.get('ciudad');
-				var li = document.createElement('li');
-				var h = document.createElement('H3');
-				var direccion = document.createTextNode(info);
-				h.appendChild(direccion);
-				var p = document.createElement('P')
-				var ciudad = document.createTextNode(infociudad);
-
-				//var h3 = "<h3>"+info+"</h3>";
-				//var par = "<p>"+direccion+"</p>";
-				//var href = "<a href=\"#\">"+h3+"</a>";
-
-				//ul.innerHTML = href;
-				p.appendChild(ciudad);
-				li.appendChild(h);
-				li.appendChild(p);
-				
-				ul.appendChild(li);
-				
-			}
-		},
-		error: function(error) {
-			alert("Error: " + error.message);
-		}
-	});
-}
-
-
-function registrarse() {
-	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
-	var Usuarios = Parse.Object.extend("Usuarios");
-	var usuarios = new Usuarios();
-	var usernamex = document.getElementById("username").value;
-	var passwordx = document.getElementById("password").value;
-	var emailx = document.getElementById("email").value;
-	var nombrex = document.getElementById("nombre").value;
-	var apellido1x = document.getElementById("apellido1").value;
-	var apellido2x = document.getElementById("apellido2").value;
-	
-	usuarios.save({username : usernamex,
-					password : passwordx,
-					email : emailx,
-					nombre : nombrex,
-					apellido1 : apellido1x,
-					apellido2 : apellido2x }, {
-	success: function(object) {
-		window.location.href = "#pageLogin";
-	},
-	error: function(model, error) {
-		$(".error").show();
-		}
-	});
-}
-
-function cargarMapa() {
-
-  // Define a div tag with id="map_canvas"
-  var mapDiv = document.getElementById("map_canvas");
-
-  // Initialize the map plugin
-  var map = plugin.google.maps.Map.getMap(mapDiv);
-
-  map.on(plugin.google.maps.event.MAP_READY, onMapInit);
-
-}
-
-function onMapInit(map) {
 }
 
 function nuevoPedido() {
@@ -259,18 +72,316 @@ function nuevoPedido() {
 	  error: function(model, error) {
 	    $(".error").show();
 	  }
-	});
+	});	
+}
+
+function ControladorLogin($scope){ 
+	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
 	
-	
+	$scope.validar = function() {
+		var email = $scope.email;
+		var pass = $scope.password;
+
+		var Usuarios = Parse.Object.extend("Usuarios");
+		var query = new Parse.Query(Usuarios);
+		query.equalTo("email", email);
+		query.find({
+			success: function(results){
+				if (results.length == 1) {
+					var usuarioR = results[0];
+					var parsePassword = usuarioR.get('password');
+					if (pass == parsePassword) {
+						usuarioSession.nombre = usuarioR.get("nombre");
+						usuarioSession.apellido1 = usuarioR.get("apellido1");
+						usuarioSession.apellido2 = usuarioR.get("apellido2");
+						usuarioSession.email = email;
+						usuarioSession.username = usuarioR.get("username");
+						
+						localStorage.setItem("usuario", JSON.stringify(usuarioSession));
+						cargarLista();
+						window.location.href = "#paginaInicial";
+					}
+					else {
+						document.getElementById("fail").innerHTML = "Contraseña incorrecto";
+					}
+				}
+				else {
+					document.getElementById("fail").innerHTML = "Usuario no existente";
+				}
+			},
+			error: function(error) {
+				alert("Error: " + error.message);
+			}
+		});
+	}
 }
 
 
+function ControladorRegistro($scope) {
+	$scope.registrarse = function() {
+		Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
+		var Usuarios = Parse.Object.extend("Usuarios");
+		var usuarios = new Usuarios();
+		var username  = $scope.usernameR;
+		var password = $scope.passwordR;
+		var email = $scope.emailR;
+		var nombre = $scope.nombreR;
+		var apellido1 = $scope.apellido1R;
+		var apellido2 = $scope.apellido2R;
+		
+		if(username == null || password == null || email == null || nombre == null || apellido1 == null || apellido2 == null){
+			alert("Rellenar todos los campos");
+		}
+		else {
+			usuarios.save({username : username,
+							password : password,
+							email : email,
+							nombre : nombre,
+							apellido1 : apellido1,
+							apellido2 : apellido2 }, {
+				success: function(object) {
+					window.location.href = "#pageLogin";
+				},
+				error: function(model, error) {
+					alert(error.message);
+				}
+			});
+		}
+	}
+}
 
 
+function cargarLista() {	
+	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
+	var objRetrieved = localStorage.getItem("usuario");
+	var usuarioSession = JSON.parse(objRetrieved);
+	
+	var tabla = document.getElementById("tablaPedidos");
+
+	var PedidosPrueba = Parse.Object.extend("PedidosPrueba");
+	var query = new Parse.Query(PedidosPrueba);
+	query.equalTo("usuario", usuarioSession.username);
+	//query.equalTo("usuario", "joma");	
+	query.find({
+		success: function(results){
+			for (var i = 0; i<results.length; i++){
+				var pedidoAux = results[i];
+				
+				var pedido = new Object();
+				pedido.CP = pedidoAux.get('CP');
+				pedido.direccion = pedidoAux.get('direccion');	
+				pedido.localidad = pedidoAux.get('localidad');	
+				pedido.ciudad = pedidoAux.get('ciudad');
+				pedido.usuario = pedidoAux.get('usuario');
+				pedido.estado = pedidoAux.get('estado');
+
+				allPedidos.push(pedido);
+			}
+			createTable();
+		},
+		error: function(error) {
+			alert("Error: " + error.message);
+		}
+	});
+}
 
 
+function createTable(){
+	var tabla = document.getElementById("tablaPedidos");
+
+	allPedidos.forEach(function(pedido, i){
+		var cp = pedido.CP;
+	
+		var pedidoFila = tabla.insertRow(i);
+		
+		var h3 = document.createElement('h3');
+		h3.innerHTML = pedido.direccion;
+		
+		var par = document.createElement('p');
+		par.innerHTML = pedido.localidad;
+		
+		var pedidoNuevo = pedidoFila.insertCell(0);
+		pedidoNuevo.appendChild(h3);
+		pedidoNuevo.appendChild(par);
+		
+		var button = pedidoFila.insertCell(1);
+		var elementButton = document.createElement("button");
+		//elementButton.type = "button";	
+		elementButton.setAttribute("onClick","mostrar(this)");
+		elementButton.value = i;
+		elementButton.innerHTML = "Consultar";
+		button.appendChild(elementButton);
+	});
+}
 
 
+function mostrar(index){
+	var pedidoM = allPedidos[index.value];
+	var address = pedidoM.cireccion +"," +  pedidoM.localidad + "," + pedidoM.ciudad + "," + pedidoM.CP;
+	
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			var myLatlng = new google.maps.LatLng(41.66,1.75);
+			var mapOptions = {
+				center : myLatlng,
+				zoom: 10,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+			
+			setTimeout(function() {
+			google.maps.event.trigger(map, 'resize');
+			},  100);
+			
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map : map,
+				position: results[0].geometry.location
+			});
+			
+			var infowindow = new google.maps.InfoWindow({
+				content: "Destino: " + pedidoM.direccion + " Estado: " +pedidoM.estado
+			});
+			
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+		window.location.href = "#pageMap";
+	});
+}
+
+function ControladorNuevoPedido($scope){
+	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
+
+	$scope.gps = function() {
+		navigator.geolocation.getCurrentPosition(onGPSSuccess, onFail);	
+	}
+	
+	$scope.map = function() {
+		navigator.geolocation.getCurrentPosition(openMap, onFail);	
+		window.location.href = "#pageMap";
+	}
+	
+	
+	$scope.savePedido = function() {
+		var direccion = document.getElementById("direccion").value;
+		var localidad = document.getElementById("localidad").value;
+		var cp = document.getElementById("cp").value;
+		var ciudad = document.getElementById("ciudad").value;
+		var posiblesEstados = ["Salida de la oficina de origen", "En tránsito",
+				"Almacén", "Entregado", "Incidencia"];
+
+		var randomEstado = Math.floor((Math.random() * 5));
+		var estado = posiblesEstados[randomEstado];
+
+		var objRetrieved = localStorage.getItem("usuario");
+		var usuarioSession = JSON.parse(objRetrieved);
+
+		
+		if(direccion == null || localidad == null || cp == null || ciudad == null){
+			alert("Rellenar todos los campos");
+		}
+		else {
+			var pedido = new Object();
+			pedido.CP = cp;
+			pedido.direccion = direccion;
+			pedido.localidad = localidad;
+			pedido.ciudad = ciudad;
+			pedido.usuario = usuarioSession.username;
+			pedido.estado = estado;
+			
+			var PedidosPrueba = Parse.Object.extend("PedidosPrueba");
+			var pedidos = new PedidosPrueba();
+		
+			pedidos.save({CP : cp,
+							direccion : direccion,
+							localidad : localidad,
+							ciudad : ciudad,
+							usuario : usuarioSession.username, 
+							estado : estado
+							}, {
+			success: function(object) {
+				allPedidos.push(pedido);
+				clearValues();
+				window.location.href = "#paginaInicial";
+				
+			},
+			error: function(model, error) {
+				alert(error.message);
+			}
+		});	
+		clearValues();
+		}
+	}
+}
 
 
+// Called after GPS Alert
+function onGPSSuccess(position) {
+	var geocoder =  new google.maps.Geocoder();
 
+	var lat = parseFloat(position.coords.latitude);
+	var lng = parseFloat(position.coords.longitude);
+	var latlng = new google.maps.LatLng(lat, lng);
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			if (results[0]) {
+				var num;
+				var calle;
+				var arrAddress = results[0].address_components;
+				// iterate through address_component array
+				$.each(arrAddress, function (i, address_component) {
+					
+					if(address_component.types[0] == "street_number"){
+						num = address_component.long_name
+						//document.getElementById("num").value = address_component.long_name;
+					}
+					if(address_component.types[0] == "route"){
+						calle = address_component.long_name
+						//document.getElementById("direccion").value = address_component.long_name;
+					}
+					if(address_component.types[0] == "locality"){
+						document.getElementById("localidad").value = address_component.long_name
+					}
+					if(address_component.types[0] == "administrative_area_level_2"){
+						document.getElementById("ciudad").value = address_component.long_name
+					}
+					if(address_component.types[0] == "postal_code"){
+						document.getElementById("cp").value = address_component.long_name
+					}
+					
+					if(num != null && calle != null){
+						document.getElementById("direccion").value = calle + ", " +num;
+					}
+			});
+		} else {
+			alert("No results found");
+		}
+		} else {
+			alert("Geocoder failed due to: " + status);
+		}
+	});
+};
+
+
+function clearValues() {
+	document.getElementById("direccion").value = "";
+	document.getElementById("localidad").value = "";
+	document.getElementById("cp").value = "";
+	document.getElementById("ciudad").value = "";
+	
+	var tabla = document.getElementById("tablaPedidos");
+	var numFiles = tabla.rows.length;
+	
+	while(tabla.rows.length > 0){
+		tabla.deleteRow(0);	
+	}
+	createTable();	
+}
+
+function ControladorPagInicial(){}
+
+
+function ControladorMapa(){}
