@@ -1,6 +1,6 @@
 document.addEventListener("deviceready",onDeviceReady,false);
 document.addEventListener("backbutton", backButton, false);
-
+var map;
 function onDeviceReady() {
 }
 
@@ -227,17 +227,35 @@ function createTable(){
 
 function mostrar(index){
 
-		var pedidoM = allPedidos[index.value];
-		
-		alert(pedidoM.ciudad);
-		
+	var pedidoM = allPedidos[index.value];
+
+	var address = pedidoM.cireccion +"," +  pedidoM.localidad + "," + pedidoM.ciudad + "," + pedidoM.CP;
+	
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			var myLatlng = new google.maps.LatLng(41.66,1.75);
+			var mapOptions = {
+				center : myLatlng,
+				zoom: 10,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map : map,
+				position: results[0].geometry.location
+			});
+
+			setTimeout(function() {
+			google.maps.event.trigger(map, 'resize');
+			},  100);
+			
+		}
+		window.location.href = "#pageMap";
+	});
 }
 
-
-
-
-function ControladorPagInicial($scope){
-}
 
 function ControladorNuevoPedido($scope){
 	Parse.initialize("RoaOckK3OMgnlQSwUMFw3lPLz3VMOnSCAtA8tRso", "jImLW1cRzGVV5ZNFG8cpkGGGNjbYQvZtrPf78AZp");
@@ -281,7 +299,7 @@ function ControladorNuevoPedido($scope){
 			
 			var PedidosPrueba = Parse.Object.extend("PedidosPrueba");
 			var pedidos = new PedidosPrueba();
-		}
+		
 			pedidos.save({CP : cp,
 							direccion : direccion,
 							localidad : localidad,
@@ -300,6 +318,7 @@ function ControladorNuevoPedido($scope){
 			}
 		});	
 		clearValues();
+		}
 	}
 }
 
@@ -365,48 +384,4 @@ function clearValues() {
 		tabla.deleteRow(0);	
 	}
 	createTable();	
-}
-
-
-
-function ControladorMapa(){
-	navigator.geolocation.getCurrentPosition(function(position){
-		var lat = parseFloat(position.coords.latitude);
-		var lng = parseFloat(position.coords.longitude);
-		var latlng = new google.maps.LatLng(lat, lng);
-	
-		var mapOptions = {
-			center: latlng,
-			zoom: 13,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-		
-		var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
-		
-		setTimeout(function() {
-			google.maps.event.trigger(map, 'resize');
-		},  100);		
-	}, onFail);	
-
-  //map.on(plugin.google.maps.event.MAP_READY, onMapInit);
-}
-
-
-function openMap(position){
-	var lat = parseFloat(position.coords.latitude);
-	var lng = parseFloat(position.coords.longitude);
-	var latlng = new google.maps.LatLng(lat, lng);
-
-	var mapOptions = {
-		center: latlng,
-		zoom: 13,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	}
-	
-	var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
-
-	setTimeout(function() {
-		google.maps.event.trigger(map, 'resize');
-	},  100);
-
 }
